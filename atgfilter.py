@@ -12,12 +12,16 @@ RESET_SEQ = "\033[0m"
 COLOR_SEQ = "\033[1;%dm"
 BOLD_SEQ = "\033[1m"
 
-patterns = {'(Include)' : BLUE,
-            '(<IfModule.*>)': MAGENTA,
-            '(configuration\s\W?)': RED,
-            '(?<=ErrorDocument)\s(\d\d\d)': CYAN,
-            '(?<=ErrorDocument\s\d\d\d)\s(.*)': GREEN,
-            '(ErrorDocument)': YELLOW,
+# patterns = {'(Include)' : BLUE,
+#             '(<IfModule.*>)': MAGENTA,
+#             '(configuration\s\W?)': RED,
+#             '(?<=ErrorDocument)\s(\d\d\d)': CYAN,
+#             '(?<=ErrorDocument\s\d\d\d)\s(.*)': GREEN,
+#             '(ErrorDocument)': YELLOW,
+#             }
+
+patterns = {'(\d\d\:\d\d\:\d\d\,\d\d\d)' : BLUE,
+            '(?<=\d\d\:\d\d\:\d\d\,\d\d\d)\s+(.*)\s+' : MAGENTA,
             }
 
 def colorize(str,color,bold = False):

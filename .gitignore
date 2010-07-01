@@ -1,0 +1,11 @@
+dev.db
+*.pyc
+*.swp
+site_media/posters
+.svn/
+*.swo
+*.swp
+local_settings.py
+.project
+.pydevproject
+site_media/unused/
