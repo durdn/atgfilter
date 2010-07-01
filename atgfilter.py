@@ -21,7 +21,9 @@ BOLD_SEQ = "\033[1m"
 #             }
 
 patterns = {'(\d\d\:\d\d\:\d\d\,\d\d\d)' : BLUE,
-            '(?<=\d\d\:\d\d\:\d\d\,\d\d\d)\s+(.*)\s+' : MAGENTA,
+            '(?<=\d\d\:\d\d\:\d\d\,\d\d\d)\s+(.*?)\s+' : GREEN,
+            '(?<=\d\d\:\d\d\:\d\d\,\d\d\d)\s+(ERROR)\s+' : RED,
+            '(\[.*?\])' : YELLOW,
             }
 
 def colorize(str,color,bold = False):
