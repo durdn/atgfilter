@@ -20,15 +20,21 @@ BOLD_SEQ = "\033[1m"
 #             '(ErrorDocument)': YELLOW,
 #             }
 
-patterns = {'(\d\d\:\d\d\:\d\d\,\d\d\d)' : BLUE,
-            '(?<=\d\d\:\d\d\:\d\d\,\d\d\d)\s+(.*?)\s+' : GREEN,
-            '(?<=\d\d\:\d\d\:\d\d\,\d\d\d)\s+(ERROR)\s+' : RED,
-            '(\[.*?\])' : YELLOW,
+patterns = {'(\d\d\:\d\d\:\d\d\,\d\d\d)' : (BLUE,None),
+            '(?<=\d\d\:\d\d\:\d\d\,\d\d\d)\s+(.*?)\s+' : (GREEN,None),
+            '(\[.*?\])' : (YELLOW,None),
+            '\s+(at\s.*)' : (RED,None),
             }
 
-def colorize(str,color,bold = False):
+def colorize(str,color,bg_color=None,bold = False):
     color_code = COLOR_SEQ % (30 + color)
-    colored = "%s%s%s%s" % (BOLD_SEQ if bold else '', color_code,str,RESET_SEQ)
+    if bg_color:
+        bg_color_code = COLOR_SEQ % (40 + bg_color)
+    colored = "%s%s%s%s%s" % (BOLD_SEQ if bold else '', 
+                              color_code,
+                              bg_color_code if bg_color else '', 
+                              str,
+                              RESET_SEQ)
     return colored
 
 
@@ -41,7 +47,7 @@ if __name__ == '__main__':
             if match:
                 try:
                     group = match.groups()[0]
-                    per_line_matches[group] = colorize(group, patterns[p])
+                    per_line_matches[group] = colorize(group, patterns[p][0], bg_color=patterns[p][1])
                 except IndexError:
                     pass
         for m in per_line_matches.keys():
