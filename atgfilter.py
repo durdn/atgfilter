@@ -21,7 +21,10 @@ BOLD_SEQ = "\033[1m"
 #             }
 
 patterns = {'(\d\d\:\d\d\:\d\d\,\d\d\d)' : (BLUE,None),
-            '(?<=\d\d\:\d\d\:\d\d\,\d\d\d)\s+(.*?)\s+' : (GREEN,None),
+            '(?<=\d\d\:\d\d\:\d\d\,\d\d\d)\s+(ERROR)\s+' : (RED,None),
+            '(?<=\d\d\:\d\d\:\d\d\,\d\d\d)\s+(DEBUG)\s+' : (GREEN,None),
+            '(?<=\d\d\:\d\d\:\d\d\,\d\d\d)\s+(INFO)\s+' : (BLUE,None),
+            '(?<=\d\d\:\d\d\:\d\d\,\d\d\d)\s+(WARN)\s+' : (MAGENTA,None),
             '(\[.*?\])' : (YELLOW,None),
             '\s+(at\s.*)' : (RED,None),
             }
